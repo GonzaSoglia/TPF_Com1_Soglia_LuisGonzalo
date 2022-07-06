@@ -10,12 +10,15 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
     internal class Consola
     {
         public ArbolGeneral arbol;
-       public Consola(ArbolGeneral arbol)
+        public Consola(ArbolGeneral arbol)
         {
             this.arbol = arbol;
         }
-       public void mostrar_Menu()
+        public void mostrar_Menu()
         {
+            Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadLine();
+            Console.Clear();
             Console.WriteLine("Bienvenido a Simulador DNS");
             Console.WriteLine("MODULO DE ADMINISTRACION");
             Console.WriteLine("1. Agregar un nuevo dominio");
@@ -29,9 +32,13 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
         }
         public bool leer_Opcion(string s)
         {
-            switch (s) {
+            switch (s)
+            {
                 case "1":
                     opcion1_agregar_nuevo_dominio();
+                    break;
+                case "3":
+                    opcion3_mostrar_equipo();
                     break;
                 case "4":
                     opcion4_mostrar_subdominios();
@@ -49,26 +56,70 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             Console.WriteLine("Ingrese dominio:");
             string dominio = Console.ReadLine();
             string[] arr_dom = dominio.Split(".");
-            if (arr_dom.Count() < 2)
+            if (arr_dom.Count() < 2 || !validar_dominio(arr_dom))
+            {
+                Console.WriteLine("Dominio invalido. Ingrese uno válido");
+                return;
+            }
+            Console.WriteLine("Ingrese protocolo: ");
+            string protocolo = Console.ReadLine();
+            Console.WriteLine("Ingrese IP: ");
+            string ip = Console.ReadLine();
+            Array.Reverse(arr_dom);
+            try
+            {
+                this.arbol.agregarDominio(arr_dom, ip, protocolo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Hubo un error en su dominio, verifique el formato indicado");
+                return;
+            }
+
+            Console.WriteLine("Dominio ingresado correctamente");
+            
+
+        }
+        public void opcion3_mostrar_equipo()
+        {
+            Console.WriteLine("Ingrese dominio del equipo:");
+            string dominio = Console.ReadLine();
+            string[] arr_dom = dominio.Split(".");
+            if (arr_dom.Count() < 2 || !validar_dominio(arr_dom))
             {
                 Console.WriteLine("Dominio invalido. Ingrese uno válido");
                 return;
             }
             Array.Reverse(arr_dom);
-            this.arbol.agregarDominio(arr_dom);
-            Console.WriteLine(arbol);
+            ArbolGeneral? hoja = this.arbol.buscar_hijo_todo_el_arbol(arr_dom);
+            if (hoja == null)
+            {
+                Console.WriteLine("No existe el equipo colocado: ");
+                return;
+            }
+            if (!hoja.getDatoRaiz().hoja)
+            {
+                Console.WriteLine("El dominio ingresado corresponde a un subdominio y no a un equipo");
+                return;
+            }
+            Console.WriteLine("Nombre del equipo: " + hoja.getDatoRaiz().nombre);
+            Console.WriteLine("IP del equipo: " + hoja.getDatoRaiz().ip);
+            Console.WriteLine("Protocolo del equipo: " + hoja.getDatoRaiz().protocolo);
+
+
+
         }
         public void opcion4_mostrar_subdominios()
         {
-            ArbolGeneral aux;
-            Console.WriteLine("Ingrese dominio (vacio desde la raiz): ");
+            ArbolGeneral ? aux;
+            Console.WriteLine("Ingrese dominio (): ");
             string dominio = Console.ReadLine();
             if (dominio == "")
             {
                 aux = this.arbol;
             }
             else
-            { 
+            {
                 string[] arr_dom = dominio.Split(".");
                 if (arr_dom.Count() < 2)
                 {
@@ -79,10 +130,16 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
                 aux = this.arbol.buscar_hijo_todo_el_arbol(arr_dom);
 
             }
+            if (aux == null)
+            {
+                Console.WriteLine("No se encuentra la ruta...");
+                return;
+            }
             foreach (ArbolGeneral hijo in aux.getHijos())
             {
-                imprimir_nodo(hijo,0);
+                imprimir_nodo(hijo, 0);
             }
+            
 
         }
 
@@ -91,12 +148,30 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             if (nivel > 0)
                 Console.Write("╠");
             Console.Write(String.Concat(Enumerable.Repeat("═", nivel * 2)));
-            Console.WriteLine("╣ " + arbol.getDatoRaiz().nombre);
+            Console.Write("╣ " + arbol.getDatoRaiz().nombre);
+            if (arbol.getDatoRaiz().hoja)
+            {
+                Console.Write(" ip: " + arbol.getDatoRaiz().ip + " " + "protocolo: " + arbol.getDatoRaiz().protocolo);
+                Console.WriteLine();
+                return;
+            }
+            Console.WriteLine();
+
             foreach (ArbolGeneral hijo in arbol.getHijos())
             {
                 imprimir_nodo(hijo, nivel + 1);
             }
 
         }
+        public bool validar_dominio(string[] arr_dom)
+        {
+            foreach (string s in arr_dom) { 
+                if (s =="")
+                    return false;
+            }
+            return true;
+        }
+
     }
+
 }

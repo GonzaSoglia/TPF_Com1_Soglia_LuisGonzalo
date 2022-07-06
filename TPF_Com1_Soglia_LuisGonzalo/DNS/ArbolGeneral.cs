@@ -27,30 +27,43 @@ namespace TPF_Com1_Soglia_LuisGonzalo
 			this.getHijos().Add(hijo);
 		}
 
-		public void agregarDominio(string[] dominio)
+		public void agregarDominio(string[] dominio, string ip, string protocolo)
 		{
 			ArbolGeneral pos = this;
 			ArbolGeneral aux;
-
+			string nombre_equipo = dominio [dominio.Length - 1];
+			dominio = dominio.SkipLast(1).ToArray();
 			foreach(string nombre in dominio)
             {
 				aux= pos.buscar_Hijo_Nombre(nombre);
 				if (aux == null)
                 {
-					Dominio nuevo_dominio = new Dominio();
-					nuevo_dominio.nombre = nombre;
+					Dominio nuevo_dominio = new Dominio(nombre);
 					ArbolGeneral nodo = new ArbolGeneral(nuevo_dominio);
 					pos.agregarHijo(nodo);
 					pos = nodo;
                 }
 				else
                 {
+					if (aux.getDatoRaiz().hoja)
+                    {
+						Console.WriteLine("No se pueden agregar equipos en cascada, ingrese otro");
+						return;
+                    }
 					pos = aux;
                 }
-
             }
+			aux = pos.buscar_Hijo_Nombre(nombre_equipo);
+			if (aux == null)
+			{
+				Dominio nuevo_dominio = new Dominio(nombre_equipo, ip, protocolo);
+				ArbolGeneral nodo = new ArbolGeneral(nuevo_dominio);
+				pos.agregarHijo(nodo);
+			}
+			else
+				Console.WriteLine("Nombre de equipo existente");
 
-        }
+		} 
 
 		public ArbolGeneral buscar_Hijo_Nombre(string nombre)
         {
