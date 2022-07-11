@@ -1,0 +1,15 @@
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\bin\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.exe
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\bin\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.deps.json
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\bin\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.runtimeconfig.json
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\bin\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.dll
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\bin\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.pdb
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.csproj.AssemblyReference.cache
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.AssemblyInfoInputs.cache
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.AssemblyInfo.cs
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.csproj.CoreCompileInputs.cache
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.dll
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\refint\TPF_Com1_Soglia_LuisGonzalo.dll
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.pdb
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\TPF_Com1_Soglia_LuisGonzalo.genruntimeconfig.cache
+C:\Users\gsoglia\source\repos\TPF_Com1_Soglia_LuisGonzalo\TPF_Com1_Soglia_LuisGonzalo\obj\Debug\net6.0\ref\TPF_Com1_Soglia_LuisGonzalo.dll

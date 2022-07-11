@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TPF_Com1_Soglia_LuisGonzalo.DNS;
 
+
 namespace TPF_Com1_Soglia_LuisGonzalo
 {
 	public class ArbolGeneral
@@ -47,7 +48,7 @@ namespace TPF_Com1_Soglia_LuisGonzalo
                 {
 					if (aux.getDatoRaiz().hoja)
                     {
-						Console.WriteLine("No se pueden agregar equipos en cascada, ingrese otro");
+						Console.WriteLine("No se puede convertir un equipo en un subdominio, ingrese otro");
 						return;
                     }
 					pos = aux;
@@ -94,10 +95,38 @@ namespace TPF_Com1_Soglia_LuisGonzalo
 
 		}
 
+		public void eliminar_dominio(string [] dominio)
+        {
+			ArbolGeneral pos = buscar_hijo_todo_el_arbol(dominio);
+			if (pos == null)
+			{
+				Console.WriteLine("No se encontro el dominio");
+				return;
+			}
+
+			Cola<T> c = new Cola<T>();
+			
+				
+
+
+
+
+
+
+        }
+
+		//public void eliminar_nodo(ArbolGeneral nodo )
+       // {
+		//	foreach (ArbolGeneral hijo in nodo.getHijos())
+		//	{
+		//		hijo.eliminar_nodo(hijo);
+				
+      //  }
+
 	
-		public void eliminarHijo(ArbolGeneral hijo) {
-			this.getHijos().Remove(hijo);
-		}
+		//public void eliminarHijo(ArbolGeneral hijo) {
+		//	this.getHijos().Remove(hijo);
+		//}
 	
 		public bool esHoja() {
 			return this.getHijos().Count == 0;

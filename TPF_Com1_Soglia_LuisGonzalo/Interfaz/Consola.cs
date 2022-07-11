@@ -37,6 +37,9 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
                 case "1":
                     opcion1_agregar_nuevo_dominio();
                     break;
+                case "2":
+                    //opcion2_eliminar_un_dominio();
+                    //break; 
                 case "3":
                     opcion3_mostrar_equipo();
                     break;
@@ -77,12 +80,27 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             }
 
             Console.WriteLine("Dominio ingresado correctamente");
-            
+
 
         }
+      /***public void opcion2_eliminar_un_dominio()
+        {
+            Console.WriteLine("Ingrese dominio del equipo (de la manera <nombre de equipo>.<subdominio_1>.<dominio>):");
+            string dominio = Console.ReadLine();
+            string[] arr_dom = dominio.Split(".");
+            if (arr_dom.Count() < 2 || !validar_dominio(arr_dom))
+            {
+                Console.WriteLine("Dominio invalido. Ingrese uno válido");
+                return;
+            }
+            Array.Reverse(arr_dom);
+            arbol.eliminar_dominio();
+
+        } **/
+
         public void opcion3_mostrar_equipo()
         {
-            Console.WriteLine("Ingrese dominio del equipo:");
+            Console.WriteLine("Ingrese dominio del equipo (de la manera <nombre de equipo>.<subdominio>.<dominio>):");
             string dominio = Console.ReadLine();
             string[] arr_dom = dominio.Split(".");
             if (arr_dom.Count() < 2 || !validar_dominio(arr_dom))
@@ -112,7 +130,7 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
         public void opcion4_mostrar_subdominios()
         {
             ArbolGeneral ? aux;
-            Console.WriteLine("Ingrese dominio (): ");
+            Console.WriteLine("Ingrese dominio y subdominios de la siguiente manera (<subdominio1>.<subdominio2>....<dominio>): ");
             string dominio = Console.ReadLine();
             if (dominio == "")
             {
