@@ -26,7 +26,7 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             Console.WriteLine("MODULO DE CONSULTA");
             Console.WriteLine("3. Mostrar información de un equipo a partir de un dominio");
             Console.WriteLine("4. Mostrar todos los equipos a partir de un subdominio");
-            Console.WriteLine("5. Mostrar todos los dominios, subdominios y equipos a partir de una profundidad dada");
+            Console.WriteLine("5. Contar los dominios, subdominios y equipos a partir de una profundidad dada");
             Console.WriteLine("0. Salir");
             Console.WriteLine("Inserte la opción deseada:");
         }
@@ -38,13 +38,16 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
                     opcion1_agregar_nuevo_dominio();
                     break;
                 case "2":
-                    //opcion2_eliminar_un_dominio();
-                    //break; 
+                    opcion2_eliminar_un_dominio();
+                    break; 
                 case "3":
                     opcion3_mostrar_equipo();
                     break;
                 case "4":
                     opcion4_mostrar_subdominios();
+                    break;
+                case "5":
+                    opcion5_contar_profundidad();
                     break;
                 case "0":
                     return false;
@@ -72,6 +75,7 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             try
             {
                 this.arbol.agregarDominio(arr_dom, ip, protocolo);
+           
             }
             catch (Exception ex)
             {
@@ -79,11 +83,11 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
                 return;
             }
 
-            Console.WriteLine("Dominio ingresado correctamente");
+            
 
 
         }
-      /***public void opcion2_eliminar_un_dominio()
+      public void opcion2_eliminar_un_dominio()
         {
             Console.WriteLine("Ingrese dominio del equipo (de la manera <nombre de equipo>.<subdominio_1>.<dominio>):");
             string dominio = Console.ReadLine();
@@ -94,9 +98,13 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
                 return;
             }
             Array.Reverse(arr_dom);
-            arbol.eliminar_dominio();
+            if (arbol.eliminar_dominio(arr_dom) == true)
+                Console.WriteLine("El dominio se elimino correctamente: ");
+            else
+                Console.WriteLine("El dominio ingresado no es valido, ingrese el correcto.");
 
-        } **/
+
+        } 
 
         public void opcion3_mostrar_equipo()
         {
@@ -159,6 +167,13 @@ namespace TPF_Com1_Soglia_LuisGonzalo.Interfaz
             }
             
 
+        }
+
+        public void opcion5_contar_profundidad()
+        {
+            Console.WriteLine("Ingrese la profundidad deseada: ");
+            int profundidad = int.Parse(Console.ReadLine());
+            Console.WriteLine("La cantidad de nodos en el nivel deseado es: " + arbol.contar_profundidad(0, profundidad));
         }
 
         public void imprimir_nodo(ArbolGeneral arbol, int nivel)

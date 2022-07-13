@@ -43,7 +43,9 @@ namespace TPF_Com1_Soglia_LuisGonzalo
 					ArbolGeneral nodo = new ArbolGeneral(nuevo_dominio);
 					pos.agregarHijo(nodo);
 					pos = nodo;
+
                 }
+				
 				else
                 {
 					if (aux.getDatoRaiz().hoja)
@@ -55,11 +57,13 @@ namespace TPF_Com1_Soglia_LuisGonzalo
                 }
             }
 			aux = pos.buscar_Hijo_Nombre(nombre_equipo);
+
 			if (aux == null)
 			{
 				Dominio nuevo_dominio = new Dominio(nombre_equipo, ip, protocolo);
 				ArbolGeneral nodo = new ArbolGeneral(nuevo_dominio);
 				pos.agregarHijo(nodo);
+				Console.WriteLine("Dominio ingresado correctamente");
 			}
 			else
 				Console.WriteLine("Nombre de equipo existente");
@@ -95,146 +99,52 @@ namespace TPF_Com1_Soglia_LuisGonzalo
 
 		}
 
-		public void eliminar_dominio(string [] dominio)
+		public bool eliminar_dominio(string [] dominio)
         {
-			ArbolGeneral pos = buscar_hijo_todo_el_arbol(dominio);
-			if (pos == null)
-			{
-				Console.WriteLine("No se encontro el dominio");
-				return;
-			}
-
-			Cola<T> c = new Cola<T>();
-			
-				
-
-
-
-
-
-
-        }
-
-		//public void eliminar_nodo(ArbolGeneral nodo )
-       // {
-		//	foreach (ArbolGeneral hijo in nodo.getHijos())
-		//	{
-		//		hijo.eliminar_nodo(hijo);
-				
-      //  }
-
-	
-		//public void eliminarHijo(ArbolGeneral hijo) {
-		//	this.getHijos().Remove(hijo);
-		//}
-	
-		public bool esHoja() {
-			return this.getHijos().Count == 0;
-		}
-	
-		public int altura() {
-			if (this.esHoja())
+			ArbolGeneral aux = buscar_hijo_todo_el_arbol(dominio);
+			if (aux == null)
             {
-				return 0;
+				return false;
             }
-			else
-            {
-				int alt_maxima=0;
-				foreach (var nodos in this.getHijos())
-				{
-					int altura_actual = nodos.altura();
-					if (alt_maxima < altura_actual) { 
-						alt_maxima = altura_actual;
-					}
-				}
-				return alt_maxima + 1;
-            }
-		}
 
-		
+			ArbolGeneral aux_padre;
+			string [] dominio_aux= dominio.SkipLast(1).ToArray();
 
-	
-		
-		public int include(Dominio dato) {
-           if(!getDatoRaiz().Equals(dato))
+			for (int i= dominio.Length-1; i >= 0; -- i)
             {
-                foreach (var nodo in this.getHijos())
+				aux_padre = buscar_hijo_todo_el_arbol(dominio_aux);
+				aux_padre.hijos.Remove(aux);
+				if (aux_padre.hijos.Count() > 0)
                 {
-					int suma_nivel = nodo.include(dato);
-					if (suma_nivel != -1)
-                    {
-						return suma_nivel + 1;
-                    }
-				}
-				return -1;
-            }
-            else
-            {
-                return 1;
-            }
-
-        }
-
-		public int nivel (Dominio dato)
-        {
-			if (getDatoRaiz().Equals(dato))
-            {
-				return 0;
-            }
-			return this.include(dato);
-		
-        }
-
-		public void Preorder()
-        {
-			Console.WriteLine(this.getDatoRaiz());
-			foreach (ArbolGeneral hijo in this.getHijos()) 
-			{
-				hijo.Preorder();
-            }
-		}
-		public void Postorder()
-		{
-			foreach (ArbolGeneral hijo in this.getHijos())
-			{
-				hijo.Postorder();
+					return true;
+                }
+				dominio_aux = dominio_aux.SkipLast(1).ToArray();
+				aux = aux_padre;
+				
 			}
-			Console.WriteLine(this.getDatoRaiz());
+			return true;
+
+
 		}
 
-		public int caudal (int caud)
+		public int contar_profundidad(int lvl, int p)
         {
-			int min = caud;
-			List<ArbolGeneral> hijos_aux = this.getHijos();
-			if (hijos_aux.Count > 0)
+			if (lvl == p)
+				return 1;
+			else
 			{
-				int caudal_hijo = caud / hijos_aux.Count;
-				int min_aux;
-				foreach (ArbolGeneral arbolh in hijos_aux)
+				int acum = 0;
+				foreach (ArbolGeneral hijo in hijos)
 				{
-					min_aux = arbolh.caudal(caudal_hijo);
-					if (min_aux < min)
-					{
-						min = min_aux;
-					}
+					acum += hijo.contar_profundidad(lvl + 1, p);
+
+
 				}
-			}
-			return min;
+				return acum;
+            }
+
+
         }
 
-		public void InOrder()
-        {
-			List<ArbolGeneral> hijos = this.getHijos();
-			if (hijos.Count>0)
-            {
-				hijos[0].InOrder();
-				hijos.RemoveAt(0);
-            }
-			Console.WriteLine(this.dato);
-			foreach (ArbolGeneral hijo in hijos)
-            {
-				hijo.InOrder();
-            }
-        }
 	}
 }
